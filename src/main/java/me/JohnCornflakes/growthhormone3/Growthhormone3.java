@@ -29,6 +29,9 @@ public class Growthhormone3 implements ModInitializer {
             if (entity.getWorld().isClient()) {
                 return ActionResult.PASS;
             }
+            if (playerEntity.getMainHandStack().getItem() != ModItems.GROWTH_HORMONE) {
+                return ActionResult.PASS;
+            }
             if (entity instanceof VillagerEntity) {
                 VillagerEntity vEntity = (VillagerEntity) entity;
                 if (Growthhormone3.CONFIG.worksOnVillagers && vEntity.isBaby()) {
