@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:egg"},
+    {"item": "minecraft:glass_bottle"},
+    {"item": "minecraft:iron_nugget"},
+    {"item": "minecraft:bone_meal"}
+  ],
+  "result": {
+    "id": "growthhormone:growth_hormone",
+    "count": 1
+  }
+}
