@@ -27,7 +27,7 @@ public class Growthhormone3 implements ModInitializer {
         CONFIG = ModConfig.load();
 
         AttackEntityCallback.EVENT.register(((playerEntity, world, hand, entity, entityHitResult) -> {
-            if (entity.getWorld().isClient()) {
+            if (entity.getEntityWorld().isClient()) {
                 return ActionResult.PASS;
             }
             if (playerEntity.getMainHandStack().getItem() != ModItems.GROWTH_HORMONE) {
