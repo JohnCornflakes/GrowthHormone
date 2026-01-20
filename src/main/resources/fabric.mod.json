@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "growthhormone3",
+  "version": "${version}",
+  "name": "GrowthHormone3",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/growthhormone3/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "me.JohnCornflakes.growthhormone3.client.Growthhormone3DataGenerator"
+    ],
+    "client": [
+      "me.JohnCornflakes.growthhormone3.client.Growthhormone3Client"
+    ],
+    "main": [
+      "me.JohnCornflakes.growthhormone3.Growthhormone3"
+    ]
+  },
+  "mixins": [
+    "growthhormone3.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
