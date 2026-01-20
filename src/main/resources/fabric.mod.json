@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "GrowthHormone3",
   "description": "",
-  "authors": [],
+  "authors": ["JohnCornflakes"],
   "contact": {},
   "license": "All-Rights-Reserved",
   "icon": "assets/growthhormone3/icon.png",
