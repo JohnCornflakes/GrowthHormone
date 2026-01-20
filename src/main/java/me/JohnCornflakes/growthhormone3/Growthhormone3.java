@@ -49,7 +49,6 @@ public class Growthhormone3 implements ModInitializer {
                     pEntity.setBaby(false);
                 }
             }
-
             return ActionResult.PASS;
         }));
 
