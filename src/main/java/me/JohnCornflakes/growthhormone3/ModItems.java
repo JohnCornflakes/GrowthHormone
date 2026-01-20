@@ -5,14 +5,24 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
-public class ModItems {
-    public static final Item GROWTH_HORMONE = registerItem("growth_hormone", new Item(new Item.Settings()));
+import java.util.function.Function;
 
-    public static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(Growthhormone3.MOD_ID, name), item);
+public class ModItems {
+    public static final Identifier growthHormoneId = Identifier.of(Growthhormone3.MOD_ID, "growth_hormone");
+    public static final RegistryKey<Item> growthHormoneKey = RegistryKey.of(RegistryKeys.ITEM, growthHormoneId);
+    public static final Item.Settings growthHormoneSettings = new Item.Settings().registryKey(growthHormoneKey);
+    public static final Item GROWTH_HORMONE = registerItem(growthHormoneKey, growthHormoneSettings);
+
+
+
+    public static Item registerItem(RegistryKey<Item> itemRegistryKey, Item.Settings itemSettings) {
+        return Registry.register(Registries.ITEM, itemRegistryKey, new Item(itemSettings));
     }
+
 
 
     public static void registerModItems() {
