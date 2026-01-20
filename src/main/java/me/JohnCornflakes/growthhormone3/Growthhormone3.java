@@ -8,6 +8,7 @@ import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,25 +33,36 @@ public class Growthhormone3 implements ModInitializer {
             if (playerEntity.getMainHandStack().getItem() != ModItems.GROWTH_HORMONE) {
                 return ActionResult.PASS;
             }
+            boolean playerInCreative = playerEntity.isCreative();
+            boolean successfulUse = false;
             if (entity instanceof VillagerEntity) {
                 VillagerEntity vEntity = (VillagerEntity) entity;
                 if (Growthhormone3.CONFIG.worksOnVillagers && vEntity.isBaby()) {
                     vEntity.setBaby(false);
+                    successfulUse = true;
                 }
             } else if (entity instanceof PassiveEntity) {
                 if (((PassiveEntity) entity).isBaby()) {
                     ((PassiveEntity) entity).setBaby(false);
+                    successfulUse = true;
                 }
             } else if (entity instanceof ZombieEntity) {
                 ZombieEntity zEntity = (ZombieEntity) entity;
                 if (Growthhormone3.CONFIG.worksOnZombieTypes && zEntity.isBaby()) {
                     zEntity.setBaby(false);
+                    successfulUse = true;
                 }
             } else if (entity instanceof PiglinEntity) {
                 PiglinEntity pEntity = (PiglinEntity) entity;
                 if (Growthhormone3.CONFIG.worksOnPiglins && pEntity.isBaby()) {
                     pEntity.setBaby(false);
+                    successfulUse = true;
                 }
+            }
+
+            if (successfulUse && !playerInCreative) {
+                ItemStack gh = playerEntity.getMainHandStack();
+                gh.setCount(gh.getCount()-1);
             }
             return ActionResult.PASS;
         }));
