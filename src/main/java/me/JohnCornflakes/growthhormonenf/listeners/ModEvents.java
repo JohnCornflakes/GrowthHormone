@@ -13,9 +13,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.items.wrapper.PlayerInvWrapper;
 
+@EventBusSubscriber(modid = "growthhormonenf")
 public class ModEvents {
 
     @SubscribeEvent
@@ -25,6 +27,7 @@ public class ModEvents {
         boolean creative = false;
         ItemStack mainHand = player.getMainHandItem();
         int mainHandCount = mainHand.getCount();
+        boolean successfulUse = false;
 
 
         if (mainHand.getItem() != ModItems.GROWTH_HORMONE.get()) {
@@ -39,30 +42,26 @@ public class ModEvents {
             if (villager.isBaby() && Config.worksOnVillagers) {
                 villager.setBaby(false);
             }
-            if (!creative) {
-                mainHand.setCount(mainHandCount - 1);
-            }
+            successfulUse = true;
         } else if (target instanceof Animal animal) {
             if (animal.isBaby()) {
                 animal.setBaby(false);
             }
-            if (!creative) {
-                mainHand.setCount(mainHandCount - 1);
-            }
+            successfulUse = true;
         } else if (target instanceof Piglin piglin) {
             if (piglin.isBaby() && Config.worksOnPiglins) {
                 piglin.setBaby(false);
             }
-            if (!creative) {
-                mainHand.setCount(mainHandCount - 1);
-            }
+            successfulUse = true;
         } else if (target instanceof Zombie zombie) {
             if (zombie.isBaby() && Config.worksOnZombieTypes) {
                 zombie.setBaby(false);
             }
-            if (!creative) {
-                mainHand.setCount(mainHandCount - 1);
-            }
+            successfulUse = true;
+        }
+
+        if (successfulUse && !creative) {
+            mainHand.setCount(mainHandCount - 1);
         }
 
         return;
