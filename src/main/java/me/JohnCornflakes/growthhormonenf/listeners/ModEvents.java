@@ -35,34 +35,36 @@ public class ModEvents {
             creative = true;
         }
 
+        boolean successfulUse = false;
+
         if (target instanceof Villager villager) {
             if (villager.isBaby() && Config.worksOnVillagers) {
                 villager.setBaby(false);
+                successfulUse = true;
             }
-            if (!creative) {
-                mainHand.setCount(mainHandCount - 1);
-            }
+
         } else if (target instanceof Animal animal) {
             if (animal.isBaby()) {
                 animal.setBaby(false);
+                successfulUse = true;
             }
-            if (!creative) {
-                mainHand.setCount(mainHandCount - 1);
-            }
+
         } else if (target instanceof Piglin piglin) {
             if (piglin.isBaby() && Config.worksOnPiglins) {
                 piglin.setBaby(false);
+                successfulUse = true;
             }
-            if (!creative) {
-                mainHand.setCount(mainHandCount - 1);
-            }
+
         } else if (target instanceof Zombie zombie) {
             if (zombie.isBaby() && Config.worksOnZombieTypes) {
                 zombie.setBaby(false);
+                successfulUse = true;
             }
-            if (!creative) {
-                mainHand.setCount(mainHandCount - 1);
-            }
+
+        }
+
+        if (!creative && successfulUse) {
+            mainHand.setCount(mainHandCount - 1);
         }
 
         return;
