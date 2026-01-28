@@ -41,23 +41,27 @@ public class ModEvents {
         if (target instanceof Villager villager) {
             if (villager.isBaby() && Config.worksOnVillagers) {
                 villager.setBaby(false);
+                successfulUse = true;
             }
-            successfulUse = true;
+
         } else if (target instanceof Animal animal) {
             if (animal.isBaby()) {
                 animal.setBaby(false);
+                successfulUse = true;
             }
-            successfulUse = true;
+
         } else if (target instanceof Piglin piglin) {
             if (piglin.isBaby() && Config.worksOnPiglins) {
                 piglin.setBaby(false);
+                successfulUse = true;
             }
-            successfulUse = true;
+
         } else if (target instanceof Zombie zombie) {
             if (zombie.isBaby() && Config.worksOnZombieTypes) {
                 zombie.setBaby(false);
+                successfulUse = true;
             }
-            successfulUse = true;
+
         }
 
         if (successfulUse && !creative) {
