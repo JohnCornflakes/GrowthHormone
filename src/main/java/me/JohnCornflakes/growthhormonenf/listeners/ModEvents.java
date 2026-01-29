@@ -5,6 +5,7 @@ import me.JohnCornflakes.growthhormonenf.Growthhormonenf;
 import me.JohnCornflakes.growthhormonenf.item.ModItems;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Dolphin;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.npc.Villager;
@@ -62,6 +63,11 @@ public class ModEvents {
                 successfulUse = true;
             }
 
+        } else if (target instanceof Dolphin dolphin) {
+            if (dolphin.isBaby()) {
+                dolphin.setBaby(false);
+                successfulUse = true;
+            }
         }
 
         if (successfulUse && !creative) {
